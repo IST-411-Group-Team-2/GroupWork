@@ -27,7 +27,6 @@ public class EchoClient
     public static void main(String[] args)
     {
         //Introductory text displayed for the program
-
         System.out.println("Simple Echo Client");
         
         //Attempts to generate a socket connecting to the server
@@ -37,10 +36,12 @@ public class EchoClient
             
             //The socket is made, set to port 8080
             try (Socket clientSocket = new Socket(localAddress, 8080);
-                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-                BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
+            //PrintWriter is created to send output to server
+            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+            //BufferedReader is created to receive response from server
+            BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
                 
-                //text displayed if the client socket communicates with the server
+                //Text displayed if the client socket communicates with the server
                 System.out.println("Connected to server");
                 Scanner scanner = new Scanner(System.in);
                 
@@ -51,7 +52,7 @@ public class EchoClient
                     if ("quit".equalsIgnoreCase(inputLine))
                         break;
                     
-                    //The inputed line is displayed
+                    //The inputted line is sent to the server
                     out.println(inputLine);
                     
                     //The text from the BufferedReader is taken from the server and displayed on the client
