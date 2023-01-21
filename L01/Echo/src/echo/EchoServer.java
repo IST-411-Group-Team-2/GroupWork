@@ -23,22 +23,35 @@ public class EchoServer
     {
         System.out.println("Simple Echo Server");
         
+        //ServerSocket is generated on port 8080
         try (ServerSocket serverSocket = new ServerSocket(8080)){
-        System.out.println("Waiting for connection.....");
-        Socket clientSocket = serverSocket.accept();
-        System.out.println("Connected to client");
-        
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
+            System.out.println("Waiting for connection.....");
+            
+            //ServerSocket attempts to connect to client, and displays text when it succeeds
+            Socket clientSocket = serverSocket.accept();
+            System.out.println("Connected to client");
+
+            //BufferedReader and PrintWriter is generated
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
+                    
                 String inputLine;
+                    
+                //loop to continue reading from the BufferedReader, as long as relevant text is inputted 
+                //and display the server's echo response back to the client    
                 while ((inputLine = br.readLine()) != null) {
-                System.out.println("Server: " + inputLine);
-                out.println(inputLine);
-            }
-        }   catch (IOException ex) {
+                    System.out.println("Server: " + inputLine);
+                    out.println(inputLine);
+                }
+            }   
+            //Exception thrown if communication fails between ServerSocket and client
+            catch (IOException ex) {
                 Logger.getLogger(EchoServer.class.getName()).log(Level.SEVERE, null, ex);
             }
-    }   catch (IOException ex) {
+        }   
+        
+        //Exception thrown if ServerSocket fails to generate
+        catch (IOException ex) {
             Logger.getLogger(EchoServer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
