@@ -31,14 +31,13 @@ public class EchoServer
             Socket clientSocket = serverSocket.accept();
             System.out.println("Connected to client");
 
-            //BufferedReader and PrintWriter is generated
+            //BufferedReader for reading client message and PrintWriter for responding to client is generated
             try (BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
+            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
                     
                 String inputLine;
-                    
-                //loop to continue reading from the BufferedReader, as long as relevant text is inputted 
-                //and display the server's echo response back to the client    
+                //Loop to continue reading from the BufferedReader, as long as relevant text remains 
+                //and sends the server's echo response back to the client    
                 while ((inputLine = br.readLine()) != null) {
                     System.out.println("Server: " + inputLine);
                     out.println(inputLine);
