@@ -12,7 +12,9 @@ import java.util.logging.Logger;
 /**
  *
  * @author Team 2
+ * (Aurora Drabik, Jang Won Cho, Tyler Cullen, Kaelynn Davies, Ian Gwillim, Andrew Kochhar, Ryan Waitlevertch)
  */
+//Server class. Needs to start first before any connections can be made.
 public class EchoServer
 {
     
@@ -23,7 +25,7 @@ public class EchoServer
     {
         System.out.println("Simple Echo Server");
         
-        //ServerSocket is generated on port 8080
+        //ServerSocket is generated on port 8080 (Client will use the same port number)
         try (ServerSocket serverSocket = new ServerSocket(8080)){
             System.out.println("Waiting for connection.....");
             

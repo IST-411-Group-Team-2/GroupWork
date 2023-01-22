@@ -13,7 +13,8 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Team 2
+ * @author Team 2 
+ * (Aurora Drabik, Jang Won Cho, Tyler Cullen, Kaelynn Davies, Ian Gwillim, Andrew Kochhar, Ryan Waitlevertch)
  */
 public class EchoClient
 {
@@ -23,7 +24,7 @@ public class EchoClient
      */
     
     //Main method for generating a client to interact with the echo server
-
+    //This is Client class which will connect to the server(same Socket number)
     public static void main(String[] args)
     {
         //Introductory text displayed for the program
@@ -49,8 +50,8 @@ public class EchoClient
                 while (true) {
                     System.out.print("Enter text: ");
                     String inputLine = scanner.nextLine();
-                    if ("quit".equalsIgnoreCase(inputLine))
-                        break;
+                    if ("quit".equalsIgnoreCase(inputLine)) 
+                        break; //entering 'quit' will break the loop
                     
                     //The inputted line is sent to the server
                     out.println(inputLine);
