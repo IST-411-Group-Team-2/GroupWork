@@ -11,4 +11,4 @@ Repo for all semester group work.
 - Ryan Waitlevertch
 
 ### Versions
-- JDK 17
+- JDK 19
