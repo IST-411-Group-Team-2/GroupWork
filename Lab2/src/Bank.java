@@ -29,7 +29,7 @@ public class Bank {
     }
     
     /**
-     * Transfers money from one account to another.
+     * Transfers money from one account to another if sufficient funds are available in the account to be taken from, if not the thread waits until the sufficient funds condition is satisfied.
      * @param from the account to transfer from
      * @param to the account to transfer to
      * @param amount the amount to transfer
