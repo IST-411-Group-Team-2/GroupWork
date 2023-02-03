@@ -1,7 +1,4 @@
 package noaaproject;
-
-
-
 /*
 Project: Lab 3
 Purpose Details: Connections NOAA Web Services
@@ -12,5 +9,19 @@ Last Date Changed:2/2/2023
 Revision: 1
 */
 public class NoaaData {
+    private Metadata metadata;
+    private Results results[];
     
+    public Metadata getMetadata(){
+        return metadata;
+    }
+    public void setMetadata(Metadata md){
+        this.metadata = md;
+    }
+    public Results[] getResults(){
+        return results;
+    }
+    public void setResults(Results[] r){
+        this.results = r;
+    }
 }
