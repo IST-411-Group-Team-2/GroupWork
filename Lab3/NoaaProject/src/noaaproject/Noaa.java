@@ -18,7 +18,7 @@ Revision: 1
 */
 public class Noaa {
     public static void main(String args[]){
-        String accessToken = ""; // Needs to be added
+        String accessToken = "fUAGPrgPiGDgXHSnHdfRaFdApXIXFGNQ"; // Needs to be added
         Gson gson = new Gson();
         String response;
         HttpURLConnection connection = null;
