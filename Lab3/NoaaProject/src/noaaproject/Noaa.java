@@ -32,20 +32,20 @@ public class Noaa {
             
             System.out.println("Result Set");
             System.out.println("----------");
-            System.out.println("%-15s%s\n", "Offset", noaa.getMetadata().getResultSet().getOffSet()); // Needs to be added
-            System.out.println("%-15s%s\n", "Offset", noaa.getMetadata().getResultSet().getCount()); // Needs to be added
-            System.out.println("%-15s%s\n", "Offset", noaa.getMetadata().getResultSet().getLimit()); // Needs to be added
+            System.out.printf("%-15s%s\n", "Offset", noaa.getMetadata().getResultSet().getOffset()); // Needs to be added
+            System.out.printf("%-15s%s\n", "Count", noaa.getMetadata().getResultSet().getCount()); // Needs to be added
+            System.out.printf("%-15s%s\n", "Limit", noaa.getMetadata().getResultSet().getLimit()); // Needs to be added
             
             int count = 1;
             for(Results res : noaa.getResults()){
                 System.out.println("Result " + count++);
                 System.out.println("----------");
-                System.out.println("%-15s%s\n", "Uid", res.getUid()); // Needs to be added
-                System.out.println("%-15s%s\n", "Min Date", res.getMinDate()); // Needs to be added
-                System.out.println("%-15s%s\n", "Max Date", res.getMaxDate()); // Needs to be added
-                System.out.println("%-15s%s\n", "Name", res.getName()); // Needs to be added
-                System.out.println("%-15s%s\n", "Data Coverage", res.getDatacoverage()); // Needs to be added
-                System.out.println("%-15s%s\n", "ID", res.getID()); // Needs to be added
+                System.out.printf("%-15s%s\n", "Uid", res.getUid()); // Needs to be added
+                System.out.printf("%-15s%s\n", "Min Date", res.getMinDate()); // Needs to be added
+                System.out.printf("%-15s%s\n", "Max Date", res.getMaxDate()); // Needs to be added
+                System.out.printf("%-15s%s\n", "Name", res.getName()); // Needs to be added
+                System.out.printf("%-15s%s\n", "Data Coverage", res.getDatacoverage()); // Needs to be added
+                System.out.printf("%-15s%s\n", "ID", res.getID()); // Needs to be added
                 System.out.println();
             }
         }
