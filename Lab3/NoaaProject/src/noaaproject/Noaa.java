@@ -37,7 +37,7 @@ public class Noaa {
             System.out.println("%-15s%s\n", "Offset", noaa.getMetadata().getResultSet().getLimit()); // Needs to be added
             
             int count = 1;
-            for(Results res : noaa.getResults()){ // Needs to be added
+            for(Results res : noaa.getResults()){
                 System.out.println("Result " + count++);
                 System.out.println("----------");
                 System.out.println("%-15s%s\n", "Uid", res.getUid()); // Needs to be added
