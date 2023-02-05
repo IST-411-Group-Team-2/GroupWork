@@ -18,24 +18,29 @@ Revision: 1
 */
 public class Noaa {
     public static void main(String args[]){
-        String accessToken = "fUAGPrgPiGDgXHSnHdfRaFdApXIXFGNQ"; // Needs to be added
+        String accessToken = "fUAGPrgPiGDgXHSnHdfRaFdApXIXFGNQ"; // Token for accessing NOAA data
         Gson gson = new Gson();
         String response;
         HttpURLConnection connection = null;
+        
         try{
+            // Create HTTP connection to NOAA
             URL url = new URL("https://www.ncdc.noaa.gov/cdo-web/api/v2/datasets");
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("token", accessToken);
             BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             response = br.readLine();
+            // Deserialize raw JSON data from NOAA
             NoaaData noaa = gson.fromJson(response, NoaaData.class);
             
+            // Print Result Set data from metadata
             System.out.println("Result Set");
             System.out.println("----------");
             System.out.printf("%-15s%s\n", "Offset", noaa.getMetadata().getResultSet().getOffset()); // Needs to be added
             System.out.printf("%-15s%s\n", "Count", noaa.getMetadata().getResultSet().getCount()); // Needs to be added
             System.out.printf("%-15s%s\n", "Limit", noaa.getMetadata().getResultSet().getLimit()); // Needs to be added
             
+            // Loop through and print the NOAA results
             int count = 1;
             for(Results res : noaa.getResults()){
                 System.out.println("Result " + count++);
