@@ -62,7 +62,28 @@ public class HttpURLConnection {
 
     
     private void sendGet() throws IOException {
-        
+        try{
+            //set the Server Connection (8080)
+            String serverAddress = "http://localhost:8080"; 
+            URL url = new URL(serverAddress);
+            //Connect to server
+            java.net.HttpURLConnection connection = (java.net.HttpURLConnection) url.openConnection();
+            //Establish the GET request
+            connection.setRequestMethod("GET"); //connection request properties
+            connection.setRequestProperty("User-Agent", "NBClient");
+            //retrives response code
+            int responseCode = connection.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
+            //if responce code is valid, getResponce from server and print it
+            if (responseCode == 200) {
+                String response = getResponse(connection);
+                System.out.println("response: " + response);
+            } else { //if responce code is not valid, displays error message
+                System.out.println("Bad Response Code: " + responseCode);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
     
     private String getResponse(java.net.HttpURLConnection connection){
