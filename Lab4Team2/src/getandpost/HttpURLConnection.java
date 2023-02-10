@@ -61,10 +61,24 @@ public class HttpURLConnection {
     }
 
     
-    private void sendGet() throws Exception{
+    private void sendGet() throws IOException {
         
     }
+    
     private String getResponse(java.net.HttpURLConnection connection){
-        
+        try (BufferedReader br = new BufferedReader(
+                new InputStreamReader(connection.getInputStream()))){
+            String inputLine;
+            StringBuilder response = new StringBuilder();
+            while ((inputLine = br.readLine()) != null){
+                response.append(inputLine);
+                response.append("/n");
+            }
+            br.close();
+            return response.toString();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return "";
     }
 }
