@@ -32,9 +32,34 @@ public class HttpURLConnection {
             connection.sendGet();
         }
     }
+    
     private void sendPost(String inf_toSend) throws Exception{
-        
+        String toSend = inf_toSend;
+        String serverAddress = "http://localhost:8080";
+        URL url = new URL(serverAddress);
+        try {
+            java.net.HttpURLConnection connection = (java.net.HttpURLConnection) url.openConnection();
+            connection.setDoOutput(true);
+            connection.setRequestProperty("User-Agent", "NBClient");
+            OutputStream toPost = connection.getOutputStream();
+            PrintWriter out = new PrintWriter(toPost, true);
+            out.println(toSend);
+            int responseCode = connection.getResponseCode();
+            System.out.println("Post Response Code: " + responseCode);
+            if (responseCode == 200) {
+                String response = getResponse(connection);
+                System.out.println("Post Response Message: " + response.toString());
+            }
+            else {
+                System.out.println("Bad Response Code: " + responseCode);
+            }
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }    
     }
+
+    
     private void sendGet() throws Exception{
         
     }
