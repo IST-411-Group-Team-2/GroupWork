@@ -84,9 +84,18 @@ public class HTTPServer {
                 out.close();
 
             } else if (requestMethod.equalsIgnoreCase("GET")) {
-
+                String response = getDiaryEntries();
+                exchange.sendResponseHeaders(200, response.length());
+                OutputStream out = exchange.getResponseBody();
+                out.write(response.toString().getBytes());
+                out.close();
             } else {
-                System.out.println("NOT GET/POST " + requestMethod);
+                System.out.println("NOT GET/POST" + requestMethod);
+                String response = "Error - not a GET/POST request";
+                exchange.sendResponseHeaders(400, response.length());
+                OutputStream out = exchange.getResponseBody();
+                out.write(response.toString().getBytes());
+                out.close();
             }
 
         }
