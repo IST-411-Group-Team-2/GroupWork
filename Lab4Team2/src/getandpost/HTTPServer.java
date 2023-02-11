@@ -119,8 +119,6 @@ public class HTTPServer {
 
         // Handle the POST request from the client
         private String postInput(InputStream in) {
-            String text;
-
             if (in != null) {
                 try (BufferedReader br = new BufferedReader(new InputStreamReader(in));) {
                     String inputLine;
