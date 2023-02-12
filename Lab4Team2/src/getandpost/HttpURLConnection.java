@@ -93,7 +93,7 @@ public class HttpURLConnection {
             StringBuilder response = new StringBuilder();
             while ((inputLine = br.readLine()) != null){
                 response.append(inputLine);
-                response.append("/n");
+                response.append("\n");
             }
             br.close();
             return response.toString();

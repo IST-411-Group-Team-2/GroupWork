@@ -153,6 +153,7 @@ public class HTTPServer {
                 out.close();
 
                 //return true if write was successful
+                return true;
             } catch (IOException e) {
                 //Exception throws if write fails
                 System.out.println("Error writing to diary.");
