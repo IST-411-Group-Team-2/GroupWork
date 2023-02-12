@@ -85,7 +85,7 @@ public class HttpURLConnection {
             ex.printStackTrace();
         }
     }
-    
+    // Get the response from the server
     private String getResponse(java.net.HttpURLConnection connection){
         try (BufferedReader br = new BufferedReader(
                 new InputStreamReader(connection.getInputStream()))){

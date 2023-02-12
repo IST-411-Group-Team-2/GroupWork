@@ -5,7 +5,6 @@ import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,9 +12,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
-import java.nio.charset.StandardCharsets;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /*
 Project: Lab 4 Group Work
@@ -57,6 +53,7 @@ public class HTTPServer {
 
     static class IndexHandler implements HttpHandler {
 
+        // Handle the HTTP request sent by the client
         @Override
         public void handle(HttpExchange exchange) throws IOException {
             String requestMethod = exchange.getRequestMethod();
@@ -67,7 +64,7 @@ public class HTTPServer {
             if (requestMethod.equalsIgnoreCase("POST")) {
                 InputStream in = exchange.getRequestBody();
                 String input = postInput(in);
-
+                // Check if we are able to add the new diary entry. Returns Internal Server Error
                 if (!addEntryToDiary(input)) {
                     String response = "ERROR - Unable to append to diary file.";
                     exchange.sendResponseHeaders(500, response.length());
@@ -76,20 +73,19 @@ public class HTTPServer {
                     out.close();
                     return;
                 }
-
+                // If successful, return OK to the client
                 String response = "OK";
                 exchange.sendResponseHeaders(200, response.length());
                 OutputStream out = exchange.getResponseBody();
                 out.write(response.toString().getBytes());
                 out.close();
-
-            } else if (requestMethod.equalsIgnoreCase("GET")) {
+            } else if (requestMethod.equalsIgnoreCase("GET")) { // Handle the GET request
                 String response = getDiaryEntries();
                 exchange.sendResponseHeaders(200, response.length());
                 OutputStream out = exchange.getResponseBody();
                 out.write(response.toString().getBytes());
                 out.close();
-            } else {
+            } else { // Handle a request that is not GET or POST. Returns Bad Request
                 System.out.println("NOT GET/POST" + requestMethod);
                 String response = "Error - not a GET/POST request";
                 exchange.sendResponseHeaders(400, response.length());
@@ -100,11 +96,13 @@ public class HTTPServer {
 
         }
 
+        // Get the diary entries
         private String getDiaryEntries() {
-            try (BufferedReader br = new BufferedReader(new FileReader("Diary.txt"))) {
+            // Try to open Diary.txt and return all entries
+            try ( BufferedReader br = new BufferedReader(new FileReader("Diary.txt"))) {
                 String inputLine;
                 StringBuilder response = new StringBuilder();
-                
+
                 while ((inputLine = br.readLine()) != null) {
                     response.append(inputLine);
                     response.append("\n");
@@ -117,10 +115,10 @@ public class HTTPServer {
             return ("");
         }
 
-        // Handle the POST request from the client
+        // Parse the POST request from the client
         private String postInput(InputStream in) {
             if (in != null) {
-                try (BufferedReader br = new BufferedReader(new InputStreamReader(in));) {
+                try ( BufferedReader br = new BufferedReader(new InputStreamReader(in));) {
                     String inputLine;
                     StringBuilder response = new StringBuilder();
                     while ((inputLine = br.readLine()) != null) {
