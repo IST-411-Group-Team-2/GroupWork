@@ -1,9 +1,10 @@
 package services;
-
+//Relevant imports
 import entities.AuctionItem;
 import java.util.ArrayList;
 import java.util.List;
 
+//Class to generate initial listings for auction items
 public class AuctionItemService {
     private static AuctionItemService instance;
     private static List<AuctionItem> data = new ArrayList<>();
@@ -15,18 +16,18 @@ public class AuctionItemService {
         data.add(new AuctionItem(3, "Necklace", "John", "Used - Gold necklace", 229.75));
         data.add(new AuctionItem(4, "TV", "Joe", "Open Box - 55 inch Television", 445.00));
     }
-
+    //Method to get an instance of the active item service
     public static AuctionItemService getInstance() {
         if (instance == null) {
             instance = new AuctionItemService();
         }
         return instance;
     }
-
+    //Method to return an auction item from the active item service
     public AuctionItem getAuctionItem(int id) {
         return data.get(id);
     }
-
+    //Method to return all items of the active item service
     public List<AuctionItem> getAllAuctionItems() {
         return data;
     }
