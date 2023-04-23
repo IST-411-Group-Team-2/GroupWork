@@ -1,5 +1,6 @@
 package controllers;
 
+//Relevant imports
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.AuctionItem;
@@ -12,8 +13,10 @@ import java.util.List;
 import views.html.DetailView.*;
 import views.html.ListView.*;
 
+//Controller for retrieving Auction Item Info
 public class AuctionItemController extends Controller {
 
+    //Get method to return a single auction item
     public Result getAuctionItem(int id) {
         // Return Auction Item for given ID, if invalid ID return all items.
         try {
@@ -24,6 +27,7 @@ public class AuctionItemController extends Controller {
         return getAuctionItems();
     }
 
+    //Get method for returning multiple auction items
     public Result getAuctionItems() {
         List<AuctionItem> auctionItems = AuctionItemService.getInstance().getAllAuctionItems();
         String output = new String();
