@@ -1,6 +1,6 @@
 package entities;
 
-//Class that generates an auction item entry
+//Model Class that generates an auction item entry
 public class AuctionItem {
     private int auctionID;
     private String auctionName;

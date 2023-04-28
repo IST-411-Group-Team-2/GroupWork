@@ -4,7 +4,7 @@ import entities.AuctionItem;
 import java.util.ArrayList;
 import java.util.List;
 
-//Class to generate initial listings for auction items
+//Data Layer Class to generate initial listings for auction items
 public class AuctionItemService {
     private static AuctionItemService instance;
     private static List<AuctionItem> data = new ArrayList<>();
